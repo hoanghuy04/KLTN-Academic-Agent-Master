@@ -1,0 +1,15 @@
+services:
+  bondhub-db:
+    image: pgvector/pgvector:pg17
+    container_name: bondhub-postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: assistant_DB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Lưu dữ liệu bền vững
+
+volumes:
+  postgres_data:
