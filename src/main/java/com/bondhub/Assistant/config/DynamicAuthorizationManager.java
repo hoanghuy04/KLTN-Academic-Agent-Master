@@ -23,13 +23,6 @@ import java.util.function.Supplier;
 
 import static com.bondhub.Assistant.predefined.PredefinedPublicPaths.PUBLIC_PATHS;
 
-/**
- * Replaces static role-based authorization with a fully dynamic, DB-driven model.
- * <p>
- * For every request that is not in {@link com.bondhub.Assistant.predefined.PredefinedPublicPaths},
- * it loads the authenticated user's Role → RolePermissions → Permission rows and checks
- * whether any permission's (path, method) pair matches the current request.
- */
 @Component
 @RequiredArgsConstructor
 @Slf4j

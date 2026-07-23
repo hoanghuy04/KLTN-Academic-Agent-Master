@@ -9,7 +9,22 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
     volumes:
-      - postgres_data:/var/lib/postgresql/data # Lưu dữ liệu bền vững
+      - postgres_data:/var/lib/postgresql/data
+
+  backend-java:
+    profiles:
+      - app
+    build: .
+    container_name: backend-java
+    ports:
+      - "${SERVER_PORT:-8081}:${SERVER_PORT:-8081}"
+    depends_on:
+      - bondhub-db
+    env_file:
+      - .ENV
+    environment:
+      - DB_HOST=bondhub-db
+      - DB_PORT=5432
 
 volumes:
   postgres_data:
